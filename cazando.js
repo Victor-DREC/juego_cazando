@@ -1,34 +1,42 @@
 let canvas=document.getElementById("areaDeJuego");
 let ctx=canvas.getContext("2d");
+//posicion gato
+let gatoX=0;
+let gatoY=0;
+//posicion comida
+let comidaX=0;
+let comidaY=0;
+//Definimos el tamaño del "gato" (rectángulo)
+const anchoGato = 80;
+const altoGato = 50;
+//Definimos el tamaño del cuadrado
+const altoComida = 20;
+const anchoComida = 20;  
 
 function graficarGato() {
-    // 1. Definimos el tamaño del "gato" (rectángulo)
-    const anchoGato = 50;
-    const altoGato = 50;
+    
 
-    // 2. Calculamos el centro exacto del canvas
+    // Calculamos el centro exacto del canvas
     // (Ancho del canvas / 2) - (Ancho del objeto / 2)
-    const x = (canvas.width / 2) - (anchoGato / 2);
-    const y = (canvas.height / 2) - (altoGato / 2);
-
-    // 3. Dibujamos el rectángulo
-    ctx.fillStyle = "#000000";
-    ctx.fillRect(x, y, anchoGato, altoGato);
+    gatoX = (canvas.width / 2) - (anchoGato / 2);
+    gatoY = (canvas.height / 2) - (altoGato / 2);
+    //color del gato
+    let colorG= "#1900ff";
+    graficarRectangulo(gatoX, gatoY, anchoGato,altoGato, colorG);
 }
 
 function graficarComida() {
-    const tamañoComida = 20; // Definimos el tamaño del cuadrado
-
-    // La esquina superior izquierda siempre es X=0, Y=0
-    const x = 0;
-    const y = 0;
-
-    ctx.fillStyle = "#FF0000"; // Color rojo para la comida
-    ctx.fillRect(x, y, tamañoComida, tamañoComida);
+    graficarRectangulo(comidaX,comidaY,anchoComida, altoComida, "#FF0808");
 }
 
 function iniciarJuego() {
     // Llamamos a las funciones que ya creaste
     graficarGato();
     graficarComida();
+}
+
+function graficarRectangulo(x,y,ancho,alto,color){
+    ctx.fillStyle = color;
+    ctx.fillRect(x, y, ancho, alto);
+
 }
