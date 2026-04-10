@@ -2,14 +2,15 @@
 <html>
 <head>
   <title>Juego Cazando</title>
-  <script src="cazando.js"></script>
   <link href="cazando.css" rel="stylesheet"/>
 </head>
-<body>
+<body onload="iniciarJuego()">
 
   <h1>Juego Cazando</h1>
-  <p>Autor: Tu Nombre o Nickname</p>
-
+  <p>Autor: Victor Pilachanga</p>
+  <div class="contenedor">
+    <canvas id="areaDeJuego" width="500" height="500"></canvas>
+  </div>
 
   <div class="controles">
     <button>⬆</button>
@@ -27,6 +28,8 @@
 
   <p id="mensaje"></p>
 
+
+  <script src="cazando.js"></script>
 
 </body>
 </html>
