@@ -17,6 +17,8 @@ let gatoX= (canvas.width / 2) - (anchoGato / 2);
 let gatoY= (canvas.height / 2) - (altoGato / 2);
 let puntos=0;
 let tiempo = 10; 
+let cronometroIniciado = false;
+let identificadorTiempo;
 
 function graficarGato() {
     //color del gato
@@ -29,11 +31,7 @@ function graficarComida() {
 }
 
 function iniciarJuego() {
-    if (!window.intervaloActivo) {
-        setInterval(restarTiempo, 1000);
-        window.intervaloActivo = true; 
-    }
-    // Llamamos a las funciones que ya creaste
+    
     graficarGato();
     graficarComida();
 }
@@ -48,6 +46,11 @@ function limpiarCanva(){
 }
 
 function moverIzquierda() {
+    if (cronometroIniciado == false) {
+        
+        identificadorTiempo = setInterval(restarTiempo, 1000);
+        cronometroIniciado = true;
+    }
     gatoX = gatoX - 10;
     limpiarCanva();
     graficarGato();
@@ -56,6 +59,11 @@ function moverIzquierda() {
 }
 
 function moverDerecha() {
+    if (cronometroIniciado == false) {
+        
+        identificadorTiempo = setInterval(restarTiempo, 1000);
+        cronometroIniciado = true;
+    }
     gatoX = gatoX + 10;
     limpiarCanva();
     graficarGato();
@@ -64,6 +72,11 @@ function moverDerecha() {
 }
 
 function moverArriba() {
+    if (cronometroIniciado == false) {
+        
+        identificadorTiempo = setInterval(restarTiempo, 1000);
+        cronometroIniciado = true;
+    }
     gatoY = gatoY - 10;
     limpiarCanva();
     graficarGato();
@@ -72,6 +85,11 @@ function moverArriba() {
 }
 
 function moverAbajo() {
+    if (cronometroIniciado == false) {
+        
+        identificadorTiempo = setInterval(restarTiempo, 1000);
+        cronometroIniciado = true;
+    }
     gatoY = gatoY + 10;
     limpiarCanva();
     graficarGato();
@@ -90,10 +108,16 @@ function detectarColision() {
 
         cambiarTexto("puntos", puntos);
 
-        comidaX = Math.floor(Math.random() * (canvas.width - 20));
-        comidaY = Math.floor(Math.random() * (canvas.height - 20));
-
-        iniciarJuego();
+       if (puntos >= 6) {
+            clearInterval(identificadorTiempo);
+            alert("¡FELICIDADES! Eres el ganador.");
+            reiniciarVariables(); 
+        } else {
+            
+            comidaX = Math.floor(Math.random() * (canvas.width - 20));
+            comidaY = Math.floor(Math.random() * (canvas.height - 20));
+            iniciarJuego();
+        }
     }
 }
 
@@ -104,7 +128,48 @@ function restarTiempo() {
     cambiarTexto("tiempo", tiempo);
 
     if (tiempo <= 0) {
-        alert("¡Fin del tiempo!");
-        tiempo = 10; 
-    }
+    clearInterval(identificadorTiempo);
+    alert("GAME OVER - Se agotó el tiempo.");
+    reiniciarVariables(); 
+}
+}
+
+
+function reiniciarVariables() {
+    limpiarCanva();
+    
+    puntos = 0;
+    tiempo = 10;
+    cronometroIniciado = false;
+    
+    
+    gatoX = (canvas.width / 2) - 25;
+    gatoY = (canvas.height / 2) - 25;
+
+    
+    cambiarTexto("puntos", puntos);
+    cambiarTexto("tiempo", tiempo);
+
+    iniciarJuego();
+}
+
+function ejecutarReiniciar() {
+    clearInterval(identificadorTiempo);
+    
+    cronometroIniciado = false;
+    puntos = 0;
+    tiempo = 10;
+
+    gatoX = (canvas.width / 2) - 25;
+    gatoY = (canvas.height / 2) - 25;
+    comidaX = 0;
+    comidaY = 0;
+
+    limpiarCanva();
+
+    cambiarTexto("puntos", puntos);
+    cambiarTexto("tiempo", tiempo);
+
+    graficarGato();
+    graficarComida();
 }
