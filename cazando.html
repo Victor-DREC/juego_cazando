@@ -1,38 +1,70 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Juego Cazando</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700;900&display=swap" rel="stylesheet">
   <link href="cazando.css" rel="stylesheet"/>
 </head>
 <body onload="iniciarJuego()">
+  <div class="game-wrapper">
+    <header class="game-header">
+      <h1>Juego Cazando</h1>
+      <p class="author">Autor: Victor Pilachanga</p>
+    </header>
 
-  <h1>Juego Cazando</h1>
-  <p>Autor: Victor Pilachanga</p>
-  <div class="contenedor">
-    <canvas id="areaDeJuego" width="500" height="500"></canvas>
+    <div class="game-dashboard">
+      <div class="canvas-container">
+        <canvas id="areaDeJuego" width="500" height="500"></canvas>
+      </div>
+
+      <div class="side-panel">
+        <div class="stats-panel glass-panel">
+          <div class="stat-box">
+            <span class="stat-label">Puntos</span>
+            <span class="stat-value" id="puntos">0</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-label">Tiempo</span>
+            <span class="stat-value" id="tiempo">10</span>
+          </div>
+        </div>
+
+        <div class="controls-panel glass-panel">
+          <h3 class="controls-title">Controles</h3>
+          <div class="d-pad">
+            <button class="d-btn up" onclick="moverArriba()" title="Arriba">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 4L4 12H9V20H15V12H20L12 4Z" fill="currentColor"/></svg>
+            </button>
+            <div class="d-pad-middle">
+              <button class="d-btn left" onclick="moverIzquierda()" title="Izquierda">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 12L12 4V9H20V15H12V20L4 12Z" fill="currentColor"/></svg>
+              </button>
+              <div class="d-center"></div>
+              <button class="d-btn right" onclick="moverDerecha()" title="Derecha">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 12L12 20V15H4V9H12V4L20 12Z" fill="currentColor"/></svg>
+              </button>
+            </div>
+            <button class="d-btn down" onclick="moverAbajo()" title="Abajo">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 20L20 12H15V4H9V12H4L12 20Z" fill="currentColor"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <button class="btn-primary" onclick="ejecutarReiniciar()">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 2v6h6M2.66 15.57a10 10 0 1 0 .57-8.38l5.67-5.67"/></svg>
+          REINICIAR
+        </button>
+
+        <p id="mensaje"></p>
+      </div>
+    </div>
   </div>
-
-  <div class="controles">
-    <button onclick="moverArriba()">⬆</button>
-    <br>
-    <button onclick="moverIzquierda()">⬅</button>
-    <button onclick="moverAbajo()">⬇</button>
-    <button onclick="moverDerecha()">➡</button>
-  </div>
-  <p>
-    <button onclick="ejecutarReiniciar()">REINICIAR</button>
-  </p>
-
-  <div class="panel">
-    <span>Puntos: <span id="puntos">0</span></span>
-    <span>Tiempo: <span id="tiempo">10</span></span>
-  </div>
-
-  <p id="mensaje"></p>
-
 
   <script src="cazando.js"></script>
   <script src="utilitarios.js"></script>
-
 </body>
 </html>
