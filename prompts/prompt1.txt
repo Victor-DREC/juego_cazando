@@ -1,0 +1,1 @@
+1.-solo modificando el archivo html y el css quiero que lo hagas mas bonito visualmente mi proyecto
