@@ -23,7 +23,7 @@ let limiteTiempoActual=15;
 
 // Adicionar al inicio con las demás variables
 let imagenGato = new Image();
-imagenGato.src = "gato2.png";
+imagenGato.src = "gato2.png"; 
 
 function graficarGato() {
     //color del gato
@@ -40,7 +40,6 @@ function iniciarJuego() {
         graficarGato();
         graficarComida();
     };
-    // Por si la imagen ya estaba en caché:
     if (imagenGato.complete) {
         graficarGato();
         graficarComida();
