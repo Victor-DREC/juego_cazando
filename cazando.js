@@ -8,8 +8,8 @@ let comidaY=0;
 const anchoGato = 150;
 const altoGato = 120;
 //Definimos el tamaño del cuadrado
-const altoComida = 20;
-const anchoComida = 20;  
+const altoComida = 30;
+const anchoComida = 30;  
 //posicion gato
 // Calculamos el centro exacto del canvas
 // (Ancho del canvas / 2) - (Ancho del objeto / 2)
@@ -21,9 +21,11 @@ let cronometroIniciado = false;
 let identificadorTiempo;
 let limiteTiempoActual=15;
 
-// Adicionar al inicio con las demás variables
 let imagenGato = new Image();
 imagenGato.src = "gato2.png"; 
+
+let imagenComida = new Image();
+imagenComida.src = "comida.png"; 
 
 function graficarGato() {
     //color del gato
@@ -36,11 +38,12 @@ function graficarComida() {
 }
 
 function iniciarJuego() {
-    imagenGato.onload = function() {
+    imagenComida.onload = function() {
         graficarGato();
         graficarComida();
     };
-    if (imagenGato.complete) {
+    
+    if (imagenComida.complete && imagenGato.complete) {
         graficarGato();
         graficarComida();
     }
@@ -189,4 +192,8 @@ function ejecutarReiniciar() {
 
 function graficarGato() {
     ctx.drawImage(imagenGato, gatoX, gatoY, anchoGato, altoGato);
+}
+
+function graficarComida() {
+    ctx.drawImage(imagenComida, comidaX, comidaY, anchoComida, altoComida);
 }
