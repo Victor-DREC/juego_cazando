@@ -16,7 +16,7 @@ const anchoComida = 20;
 let gatoX= (canvas.width / 2) - (anchoGato / 2);
 let gatoY= (canvas.height / 2) - (altoGato / 2);
 let puntos=0;
-let tiempo = 60; 
+let tiempo = 15; 
 let cronometroIniciado = false;
 let identificadorTiempo;
 
@@ -139,7 +139,7 @@ function reiniciarVariables() {
     limpiarCanva();
     
     puntos = 0;
-    tiempo = 60;
+    tiempo = 15;
     cronometroIniciado = false;
     
     
@@ -158,7 +158,7 @@ function ejecutarReiniciar() {
     
     cronometroIniciado = false;
     puntos = 0;
-    tiempo = 60;
+    tiempo = 15;
 
     gatoX = (canvas.width / 2) - 25;
     gatoY = (canvas.height / 2) - 25;
