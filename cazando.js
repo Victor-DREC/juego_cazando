@@ -19,6 +19,7 @@ let puntos=0;
 let tiempo = 15; 
 let cronometroIniciado = false;
 let identificadorTiempo;
+let limiteTiempoActual=15;
 
 function graficarGato() {
     //color del gato
@@ -113,7 +114,8 @@ function detectarColision() {
             alert("¡FELICIDADES! Eres el ganador.");
             reiniciarVariables(); 
         } else {
-            tiempo=15;
+            limiteTiempoActual=limiteTiempoActual-1;
+            tiempo=limiteTiempoActual;
             cambiarTexto("tiempo",tiempo);
             comidaX = Math.floor(Math.random() * (canvas.width - 20));
             comidaY = Math.floor(Math.random() * (canvas.height - 20));
@@ -160,6 +162,7 @@ function ejecutarReiniciar() {
     cronometroIniciado = false;
     puntos = 0;
     tiempo = 15;
+    limiteTiempoActual=15;
 
     gatoX = (canvas.width / 2) - 25;
     gatoY = (canvas.height / 2) - 25;
