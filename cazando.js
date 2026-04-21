@@ -113,7 +113,8 @@ function detectarColision() {
             alert("¡FELICIDADES! Eres el ganador.");
             reiniciarVariables(); 
         } else {
-            
+            tiempo=15;
+            cambiarTexto("tiempo",tiempo);
             comidaX = Math.floor(Math.random() * (canvas.width - 20));
             comidaY = Math.floor(Math.random() * (canvas.height - 20));
             iniciarJuego();
