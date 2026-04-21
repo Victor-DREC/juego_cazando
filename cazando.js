@@ -5,8 +5,8 @@ let ctx=canvas.getContext("2d");
 let comidaX=0;
 let comidaY=0;
 //Definimos el tamaño del "gato" (rectángulo)
-const anchoGato = 80;
-const altoGato = 50;
+const anchoGato = 150;
+const altoGato = 120;
 //Definimos el tamaño del cuadrado
 const altoComida = 20;
 const anchoComida = 20;  
@@ -21,6 +21,10 @@ let cronometroIniciado = false;
 let identificadorTiempo;
 let limiteTiempoActual=15;
 
+// Adicionar al inicio con las demás variables
+let imagenGato = new Image();
+imagenGato.src = "gato2.png";
+
 function graficarGato() {
     //color del gato
     let colorG= "#1900ff";
@@ -32,9 +36,15 @@ function graficarComida() {
 }
 
 function iniciarJuego() {
-    
-    graficarGato();
-    graficarComida();
+    imagenGato.onload = function() {
+        graficarGato();
+        graficarComida();
+    };
+    // Por si la imagen ya estaba en caché:
+    if (imagenGato.complete) {
+        graficarGato();
+        graficarComida();
+    }
 }
 
 function graficarRectangulo(x,y,ancho,alto,color){
@@ -176,4 +186,8 @@ function ejecutarReiniciar() {
 
     graficarGato();
     graficarComida();
+}
+
+function graficarGato() {
+    ctx.drawImage(imagenGato, gatoX, gatoY, anchoGato, altoGato);
 }
